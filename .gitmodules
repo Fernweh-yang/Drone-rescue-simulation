@@ -1,3 +1,21 @@
 [submodule "src/rotors_simulator"]
 	path = src/rotors_simulator
 	url = https://github.com/ethz-asl/rotors_simulator
+[submodule "src/mav_trajectory_generation"]
+	path = src/mav_trajectory_generation
+	url = https://github.com/ethz-asl/mav_trajectory_generation
+[submodule "src/mav_comm"]
+	path = src/mav_comm
+	url = https://github.com/ethz-asl/mav_comm
+[submodule "src/eigen_catkin"]
+	path = src/eigen_catkin
+	url = https://github.com/ethz-asl/eigen_catkin
+[submodule "src/eigen_checks"]
+	path = src/eigen_checks
+	url = https://github.com/ethz-asl/eigen_checks
+[submodule "src/glog_catkin"]
+	path = src/glog_catkin
+	url = https://github.com/ethz-asl/glog_catkin
+[submodule "src/nlopt"]
+	path = src/nlopt
+	url = https://github.com/ethz-asl/nlopt

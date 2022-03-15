@@ -19,3 +19,6 @@
 [submodule "src/nlopt"]
 	path = src/nlopt
 	url = https://github.com/ethz-asl/nlopt
+[submodule "src/catkin_simple"]
+	path = src/catkin_simple
+	url = https://github.com/catkin/catkin_simple

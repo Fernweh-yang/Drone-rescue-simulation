@@ -25,9 +25,7 @@ class StateServer
         ROS_ERROR("[unity_state] state server connection broken");
         exit(1);
       }
-
-      // 异常处理
-      // try是被保护的代码，即可能抛出异常的代码
+    
       try {
         auto data = stream_reader.ReadBytes(15 * sizeof(float));
         float* begin = reinterpret_cast<float*>(data.get());
@@ -68,7 +66,7 @@ class StateServer
         br.sendTransform(tf::StampedTransform(pose, ros::Time::now(), "world", "av"));
 
 #endif
-      // std::exception是所有标准c++异常的父类
+        
       } catch(std::exception & ex) {
         ROS_ERROR("Shutting down state server");
         stream_reader.Shutdown();
@@ -91,27 +89,17 @@ class StateServer
 
 
 int main(int argc, char *argv[])
-{ 
-  // 初始化ros,并定义节点名为current_state
+{
   ros::init(argc, argv, "current_state");
-  // 创建当前进程节点的句柄nh
   ros::NodeHandle nh;
   
   std::string ip_address, port;
   port="12347";
   ip_address="127.0.0.1";
-  
-  // 用TCP协议连接到unity
+    
   StateServer unity_state_server(ip_address, port);
   unity_state_server.Connect();
 
-  /*
-  ros::ok()如下情况会返回false:
-  1.收到一个SIGINT信号
-  2.被另一个同名的节点踢出了网络
-  3.ros::shutdown()被程序的其他部分调用
-  4.所有的ros::NodeHandles被销毁了
-  */
   while (ros::ok()) {    
     unity_state_server.PublishStateStream();
     ros::spinOnce();

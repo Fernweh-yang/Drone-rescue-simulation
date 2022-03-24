@@ -92,7 +92,6 @@ class UDPPoseStreamer {
         static const size_t packet_size = pose_size;
 
         uint8_t packet_data[packet_size];
-        //复制pose_size个coordinates的字节到packet_data
         memcpy(packet_data , &coordinates, pose_size);
         dgram_client.sndto(&packet_data, packet_size, ip_address, "12348");
     }else{
@@ -130,12 +129,10 @@ void wCallback(const mav_msgs::Actuators& cmd)
 
 int main(int argc, char **argv)
 {
-  //初始化ros，创建一个叫"w_to_unity"的节点
   ros::init(argc, argv, "w_to_unity");
 
   ros::NodeHandle n;
 
-  //设置一个想要的循环频率
   ros::Rate loop_rate(1000);
 
   std::string ip_address, port;
@@ -145,19 +142,15 @@ int main(int argc, char **argv)
   offset_x=0;
   offset_y=0;
   std::cout << "This node enables send communication to Unity\n";
-  
-  //和unity建立联系
+
   UDPPoseStreamer streamer(ip_address, port, offset_x, offset_y);
 
   float counter=0;
-  //接收无人机四轴的旋转速度
   ros::Subscriber sub = n.subscribe("rotor_speed_cmds", 1, wCallback);
-  //接收受害者坐标
   ros::Subscriber markerSub = n.subscribe("victimCoord_continous_topic", 10, &UDPPoseStreamer::PublishMarker, &streamer);
 
   while (ros::ok())
-    { 
-      //利用udp协议把无人机的角度，角速度或其他指令（需自己扩展）发送给无人机
+    {
       streamer.PublishPose(w_msg2);
 
       ros::spinOnce();

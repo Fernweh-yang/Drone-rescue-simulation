@@ -27,15 +27,8 @@ int main(int argc, char** argv) {
 
     // define goal point
     Eigen::Vector3d goal_position, goal_velocity;
-    goal_position << 0.0, 0.0, 2.0;
+    goal_position << 0.0, 50.0, 20.0;
     goal_velocity << 0.0, 0.0, 0.0;
-
-    // THIS SHOULD NORMALLY RUN INSIDE ROS::SPIN!!! JUST FOR DEMO PURPOSES LIKE THIS.
-    ROS_WARN_STREAM("PRESS ENTER TO UPDATE CURRENT POSITION AND SEND TRAJECTORY");
-    std::cin.get();
-    for (int i = 0; i < 10; i++) {
-        ros::spinOnce();  // process a few messages in the background - causes the uavPoseCallback to happen
-    }
 
     mav_trajectory_generation::Trajectory trajectory;
     planner.planTrajectory(goal_position, goal_velocity, &trajectory);

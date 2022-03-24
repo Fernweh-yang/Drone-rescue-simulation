@@ -18,22 +18,21 @@ find_package(catkin REQUIRED COMPONENTS
 	rospy
 	tf
 	std_msgs
-	mav_msgs
+  mav_msgs
 )
 
 catkin_package(CATKIN_DEPENDS 
   roscpp 
   std_msgs 
   geometry_msgs 
+  mav_msgs 
   tf
-  mav_msgs
 )
-
 
 include(ExternalProject)
 
 ExternalProject_Add(unitysim
-    URL               https://www.dropbox.com/s/3s2mwwmool8km8x/avalanche.zip?dl=0
+    URL               https://www.dropbox.com/s/1ugwd7t98tj25h8/avalanche.zip?dl=0
     DOWNLOAD_NAME     avalanche.zip
     CONFIGURE_COMMAND chmod +x ../unitysim/AVALANCHE.x86_64
     BUILD_COMMAND     ""
@@ -63,18 +62,15 @@ include_directories(${catkin_INCLUDE_DIRS} tcpimage)
 
 add_subdirectory(tcpimage)
 
-add_executable(unity_state src/unity_state.cpp)
-add_dependencies(unity_state ${catkin_EXPORTED_TARGETS})
-target_link_libraries(unity_state ${catkin_LIBRARIES} tcpstreamreader)
-
 add_executable(w_to_unity src/w_to_unity.cpp)
 target_link_libraries(w_to_unity ${catkin_LIBRARIES} socket++ -pthread)
 add_dependencies(w_to_unity libsocket ${catkin_EXPORTED_TARGETS})
 
-add_executable(traj_publisher src/traj_publisher.cpp)
-add_dependencies(traj_publisher ${catkin_EXPORTED_TARGETS})
-target_link_libraries(traj_publisher ${catkin_LIBRARIES})
+add_executable(unity_state src/unity_state.cpp)
+add_dependencies(unity_state ${catkin_EXPORTED_TARGETS})
+target_link_libraries(unity_state ${catkin_LIBRARIES} tcpstreamreader)
 
-add_executable(victim_show src/victim_show.cpp)
-add_dependencies(victim_show ${catkin_EXPORTED_TARGETS})
-target_link_libraries(victim_show ${catkin_LIBRARIES})
+
+add_executable(victim src/victim.cpp)
+add_dependencies(victim ${catkin_EXPORTED_TARGETS})
+target_link_libraries(victim ${catkin_LIBRARIES} tcpstreamreader)

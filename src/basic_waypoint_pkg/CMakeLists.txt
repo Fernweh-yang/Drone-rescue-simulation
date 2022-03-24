@@ -21,7 +21,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 catkin_simple(ALL_DEPS_REQUIRED)
 
-cs_add_executable(basic_waypoint_pkg
+cs_add_executable(planner_node
         src/planner.cc
         src/planner_node.cc
         )

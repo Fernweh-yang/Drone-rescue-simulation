@@ -35,13 +35,13 @@ The goal of the UAV is to fly over the avalanche and locate all the victims in a
    ```
 
 ### 2. Run the Project
-If you want to run in Docker, please read [here](https://gitlab.lrz.de/ge23ged/autonomous-systems-2021-group-terminus/-/blob/main/project/Docker/README.md)  
+If you want to run in Docker, please read [here](https://github.com/Fernweh-yang/Drone-rescue-simulation/blob/main/Docker/README.md)  
 If you want to run in your own Linux environment, please read below:  
 We have two search models
 
 - An intuitive idea, Inch-by-Inch Search 
 
-  Read the [How to run inch-by-inch search](https://gitlab.lrz.de/ge23ged/autonomous-systems-2021-group-terminus/-/blob/main/project/src/README.md)
+  Read the [How to run inch-by-inch search](https://github.com/Fernweh-yang/Drone-rescue-simulation/blob/main/src/README.md)
 
 - An optimized Planning Method
 
